@@ -1,0 +1,10 @@
+name: Reusable Workflow user
+
+on:
+  workflow_dispatch:
+
+jobs:
+  docker:
+      uses: codeandmedia/A/blob/main/.github/workflows/main.yml@main
+      with:
+        image_name: my-awesome-app
