@@ -4,8 +4,21 @@ on:
   workflow_dispatch:
 
 jobs:
+
+  getfolders:
+    runs-on: ubuntu-latest
+    outputs:
+      dirs: ${{ steps.dirs.outputs.test }}
+
+    steps:
+        - uses: actions/checkout@v3
+        - id: dirs
+          run: git diff --quiet HEAD "$(git describe --tags --abbrev=0 HEAD)" -- foo || echo 
+    
+
   docker:
+      needs: getfolders
       uses: codeandmedia/A/.github/workflows/main.yml@main
       with:
         image_tag: ${{ github.ref_name }}
-        folder: folder_name
+        folder: ${{needs.getfolders.outputs.dirs}}
