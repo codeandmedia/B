@@ -7,4 +7,5 @@ jobs:
   docker:
       uses: codeandmedia/A/.github/workflows/main.yml@main
       with:
-        image_name: ${{ github.ref_name }}
+        image_tag: ${{ github.ref_name }}
+        folder: folder_name
