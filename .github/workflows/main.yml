@@ -5,6 +5,9 @@ on:
 
 jobs:
   changes:
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
     uses: codeandmedia/A/.github/workflows/check.yml@main
 
   docker:
