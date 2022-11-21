@@ -5,8 +5,14 @@ on:
 
 jobs:
 
-  getfolders:
+  changes:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+
     steps:
       - uses: actions/checkout@v3
       - uses: dorny/paths-filter@v2
@@ -18,8 +24,10 @@ jobs:
             frontend:
               - 'frontend/**'
 
-      - if: steps.filter.outputs.backend == 'true'
-        uses: codeandmedia/A/.github/workflows/main.yml@main
-        with:
-          image_tag: ${{ github.ref_name }}
-          folder: ${{ needs.get_changed.outputs.changed }}
+  docker:
+    needs: changes
+    if: ${{ needs.changes.outputs.backend == 'true' }}
+      uses: codeandmedia/A/.github/workflows/main.yml@main
+      with:
+        image_tag: ${{ github.ref_name }}
+        folder: folder
