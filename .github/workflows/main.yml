@@ -7,9 +7,6 @@ jobs:
 
   getfolders:
     runs-on: ubuntu-latest
-    outputs:
-      dirs: ${{ steps.dirs.outputs.test }}
-
     steps:
       - uses: actions/checkout@v3
       - uses: dorny/paths-filter@v2
