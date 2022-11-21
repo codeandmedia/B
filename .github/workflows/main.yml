@@ -26,4 +26,4 @@ jobs:
       uses: codeandmedia/A/.github/workflows/main.yml@main
       with:
         image_tag: ${{ github.ref_name }}
-        folder: ${{needs.getfolders.outputs.dirs}}
+        folder: ${{ needs.get_changed.outputs.changed }}
