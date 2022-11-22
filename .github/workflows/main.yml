@@ -1,4 +1,4 @@
-name: Reusable Workflow user
+name: Reusable Workflow
 
 on:
   push:
