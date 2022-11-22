@@ -9,8 +9,10 @@ jobs:
 
   docker:
     needs: changes
-    if: ${{ needs.changes.outputs.backend == 'true' }}
+    strategy:
+      matrix:
+        package: ${{ fromJSON(needs.changes.outputs.packages) }}
     uses: codeandmedia/A/.github/workflows/main.yml@main
     with:
       image_tag: ${{ github.ref_name }}
-      folder: folder
+      package: ${{ matrix.package }}
