@@ -2,11 +2,9 @@ name: Reusable Workflow
 
 on:
   push:
-
-jobs:
+jobs: 
   changes:
     uses: codeandmedia/A/.github/workflows/check.yml@main
-
   docker:
     needs: changes
     strategy:
