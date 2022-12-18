@@ -2,6 +2,8 @@ name: Reusable Workflow
 
 on:
   push:
+    tags:        
+      - 'env*'
 jobs: 
   changes:
     uses: codeandmedia/A/.github/workflows/check.yml@main
